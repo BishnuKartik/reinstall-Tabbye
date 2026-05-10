@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Goodbye — TabBye 💀</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ══════════════════════════════════════
+       VARIABLES — TabBye Dark Theme
+    ══════════════════════════════════════ */
+    :root {
+      --bg:           #0A0A0A;
+      --bg1:          #0F0F0F;
+      --bg2:          #141414;
+      --bg3:          #1A1A1A;
+      --bg4:          #202020;
+      --surface:      #1A1A1A;
+      --border:       #1E1E1E;
+      --border2:      #2A2A2A;
+      --border3:      #333333;
+      --text:         #FFFFFF;
+      --text2:        #A0A0A0;
+      --text3:        #505050;
+      --accent:       #7C3AED;
+      --accent-light: #8B5CF6;
+      --accent-glow:  rgba(124,58,237,0.25);
+      --accent-soft:  rgba(124,58,237,0.08);
+      --success:      #10B981;
+      --warning:      #F59E0B;
+      --danger:       #EF4444;
+      --pink:         #EC4899;
+      --pink-soft:    rgba(236,72,153,0.08);
+      --pink-border:  rgba(236,72,153,0.2);
+      --green-soft:   rgba(16,185,129,0.08);
+      --green-border: rgba(16,185,129,0.2);
+      --font:         'Inter', -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --radius:       14px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Background glows ── */
+    .bg-glow {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(100px);
+    }
+
+    .bg-glow-1 {
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(
+        ellipse,
+        rgba(236,72,153,0.08) 0%,
+        transparent 70%
+      );
+    }
+
+    .bg-glow-2 {
+      bottom: -150px;
+      right: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(
+        ellipse,
+        rgba(124,58,237,0.07) 0%,
+        transparent 70%
+      );
+    }
+
+    .bg-glow-3 {
+      top: 40%;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(
+        ellipse,
+        rgba(139,92,246,0.05) 0%,
+        transparent 70%
+      );
+    }
+
+    /* Noise texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+
+    .hero {
+      text-align: center;
+      padding-bottom: 64px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--pink-soft);
+      border: 1px solid var(--pink-border);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--pink);
+      letter-spacing: 0.3px;
+      margin-bottom: 32px;
+      font-family: var(--font-mono);
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+      animation: blink 2.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+
+    .hero-icon {
+      width: 96px;
+      height: 96px;
+      background: linear-gradient(
+        135deg,
+        var(--pink-soft),
+        rgba(124,58,237,0.06)
+      );
+      border: 1px solid var(--pink-border);
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+      box-shadow:
+        0 0 48px rgba(236,72,153,0.12),
+        0 8px 40px rgba(0,0,0,0.5);
+      font-size: 48px;
+      animation:
+        fadeDown 0.6s 0.1s ease both,
+        float 4s ease-in-out infinite 1s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 6vw, 52px);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.06;
+      margin-bottom: 20px;
+      animation: fadeDown 0.6s 0.15s ease both;
+    }
+
+    .hero-title .grad {
+      background: linear-gradient(
+        135deg,
+        #EC4899 0%,
+        #8B5CF6 50%,
+        #7C3AED 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--text2);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+      font-weight: 400;
+      animation: fadeDown 0.6s 0.2s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeDown 0.6s 0.25s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 26px;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 24px rgba(124,58,237,0.35);
+      font-family: var(--font);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      box-shadow: 0 8px 32px rgba(124,58,237,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 26px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      color: var(--text2);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-family: var(--font);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg4);
+      border-color: var(--border3);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .btn-browser-img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════════════
+       STATS STRIP
+    ══════════════════════════════════════ */
+
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 64px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .stat-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 16px;
+      text-align: center;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.02),
+        transparent
+      );
+      pointer-events: none;
+    }
+
+    .stat-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-2px);
+    }
+
+    .stat-num {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 5px;
+      font-family: var(--font-display);
+      display: block;
+    }
+
+    .stat-num.purple { color: var(--accent-light); }
+    .stat-num.pink   { color: var(--pink); }
+    .stat-num.green  { color: var(--success); }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text3);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      display: block;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION DIVIDER
+    ══════════════════════════════════════ */
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-divider-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text3);
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════
+       FAREWELL CARD
+    ══════════════════════════════════════ */
+
+    .farewell-card {
+      background: linear-gradient(
+        135deg,
+        var(--pink-soft),
+        rgba(124,58,237,0.04)
+      );
+      border: 1px solid var(--pink-border);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 56px;
+      animation: fadeUp 0.5s 0.35s ease both;
+    }
+
+    .farewell-quote {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.9;
+      max-width: 560px;
+      margin: 0 auto 24px;
+      font-style: italic;
+      border-left: 3px solid var(--pink-border);
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    .farewell-sig {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text2);
+    }
+
+    .farewell-sig span { color: var(--pink); }
+
+    /* ══════════════════════════════════════
+       FEEDBACK BOX
+    ══════════════════════════════════════ */
+
+    .feedback-box {
+      background: linear-gradient(
+        135deg,
+        var(--accent-soft),
+        rgba(139,92,246,0.04)
+      );
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 18px;
+      padding: 28px;
+      margin-bottom: 64px;
+      animation: fadeUp 0.5s 0.4s ease both;
+    }
+
+    .fb-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      font-family: var(--font-display);
+    }
+
+    .fb-sub {
+      font-size: 13px;
+      color: var(--text2);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .reason-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      color: var(--text2);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: left;
+      font-family: var(--font);
+    }
+
+    .reason-btn:hover {
+      background: var(--bg4);
+      border-color: rgba(124,58,237,0.3);
+      color: var(--text);
+    }
+
+    .reason-btn.selected {
+      background: var(--accent-soft);
+      border-color: rgba(124,58,237,0.4);
+      color: var(--accent-light);
+      box-shadow: 0 0 0 1px rgba(124,58,237,0.15);
+    }
+
+    .reason-emoji { font-size: 16px; flex-shrink: 0; }
+
+    textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13px;
+      padding: 12px 14px;
+      resize: vertical;
+      min-height: 80px;
+      margin-bottom: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+      line-height: 1.6;
+    }
+
+    textarea::placeholder { color: var(--text3); }
+
+    textarea:focus {
+      border-color: rgba(124,58,237,0.4);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.06);
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .submit-note {
+      font-size: 11px;
+      color: var(--text3);
+      font-family: var(--font-mono);
+      line-height: 1.5;
+    }
+
+    .btn-submit {
+      padding: 10px 22px;
+      background: var(--accent);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font);
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(124,58,237,0.3);
+    }
+
+    .btn-submit:hover {
+      background: var(--accent-light);
+      box-shadow: 0 6px 20px rgba(124,58,237,0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .thank-you-msg {
+      display: none;
+      text-align: center;
+      padding: 18px;
+      background: var(--green-soft);
+      border: 1px solid var(--green-border);
+      border-radius: 10px;
+      color: var(--success);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ══════════════════════════════════════
+       WHAT YOU HAD (Miss Grid)
+    ══════════════════════════════════════ */
+
+    .miss-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 64px;
+    }
+
+    .miss-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.2s;
+      animation: fadeUp 0.5s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .miss-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.02),
+        transparent
+      );
+      pointer-events: none;
+    }
+
+    .miss-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .miss-card:nth-child(1) { animation-delay: 0.10s; }
+    .miss-card:nth-child(2) { animation-delay: 0.15s; }
+    .miss-card:nth-child(3) { animation-delay: 0.20s; }
+    .miss-card:nth-child(4) { animation-delay: 0.25s; }
+    .miss-card:nth-child(5) { animation-delay: 0.30s; }
+    .miss-card:nth-child(6) { animation-delay: 0.35s; }
+    .miss-card:nth-child(7) { animation-delay: 0.40s; }
+    .miss-card:nth-child(8) { animation-delay: 0.45s; }
+
+    .miss-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .miss-icon-purple { background: rgba(124,58,237,0.12); }
+    .miss-icon-pink   { background: rgba(236,72,153,0.12); }
+    .miss-icon-green  { background: rgba(16,185,129,0.10); }
+    .miss-icon-amber  { background: rgba(245,158,11,0.10); }
+    .miss-icon-blue   { background: rgba(59,130,246,0.10); }
+    .miss-icon-teal   { background: rgba(20,184,166,0.10); }
+    .miss-icon-red    { background: rgba(239,68,68,0.10);  }
+    .miss-icon-indigo { background: rgba(99,102,241,0.10); }
+
+    .miss-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      font-family: var(--font-display);
+    }
+
+    .miss-desc {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════
+       DEVELOPER CARD
+    ══════════════════════════════════════ */
+
+    .dev-card {
+      background: linear-gradient(
+        135deg,
+        var(--accent-soft),
+        rgba(139,92,246,0.03)
+      );
+      border: 1px solid rgba(124,58,237,0.18);
+      border-radius: 20px;
+      padding: 36px 32px;
+      text-align: center;
+      margin-bottom: 24px;
+      animation: fadeUp 0.5s 0.45s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dev-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 200px;
+      background: radial-gradient(
+        ellipse,
+        rgba(124,58,237,0.07) 0%,
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+
+    .dev-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 2px solid rgba(124,58,237,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 4px rgba(124,58,237,0.08),
+        0 8px 32px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .dev-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .dev-avatar-fallback {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--accent-light);
+      font-family: var(--font-display);
+    }
+
+    .dev-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dev-tag {
+      font-size: 13px;
+      color: var(--text3);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dev-socials {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .dev-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+
+    .dev-social:hover {
+      background: var(--bg4);
+      color: var(--text);
+      border-color: rgba(124,58,237,0.3);
+      transform: translateY(-2px);
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+
+    .footer {
+      text-align: center;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+      animation: fadeUp 0.5s 0.5s ease both;
+    }
+
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .footer-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(124,58,237,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .footer-logo-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text2);
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--text3);
+      line-height: 2;
+      font-family: var(--font-mono);
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+
+    @media (max-width: 600px) {
+      .miss-grid      { grid-template-columns: 1fr; }
+      .reasons-grid   { grid-template-columns: 1fr; }
+      .stats-strip    { grid-template-columns: 1fr; }
+      .submit-row     { flex-direction: column; align-items: flex-start; }
+      .hero-ctas      { flex-direction: column; align-items: center; }
+      .hero-title     { font-size: 28px; letter-spacing: -1px; }
+      .container      { padding: 40px 16px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background glows -->
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+<div class="bg-glow bg-glow-3"></div>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <div class="hero">
+
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      extension removed &nbsp;·&nbsp; v1.0.0
+    </div>
+
+    <div class="hero-icon">👋</div>
+
+    <h1 class="hero-title">
+      Sorry to see you go,<br>
+      <span class="grad">thanks for the journey</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      TabBye has been removed from your browser.
+      It was a privilege helping you keep your tabs clean.
+      You're always welcome back — we'll be here. 🙏
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn-primary"
+        href="https://microsoftedge.microsoft.com/addons/search?developer=BishnuKartik"
+        target="_blank">
+        <img
+          src="edge.png"
+          class="btn-browser-img"
+          alt="Edge"
+          onerror="this.style.display='none'"
+        />
+        Reinstall on Edge
+      </a>
+      <a class="btn-secondary"
+        href="https://chromewebstore.google.com/search/bishnukartik?hl=en-US&utm_source=ext_sidebar"
+        target="_blank">
+        <img
+          src="chrome.png"
+          class="btn-browser-img"
+          alt="Chrome"
+          onerror="this.style.display='none'"
+        />
+        Reinstall on Chrome
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════
+       STATS STRIP
+  ══════════════════════════════════════ -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <span class="stat-num purple">Free</span>
+      <span class="stat-label">completely free</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num pink">0kb</span>
+      <span class="stat-label">data ever collected</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num green">100%</span>
+      <span class="stat-label">privacy kept</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FAREWELL MESSAGE
+  ══════════════════════════════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-label">A personal note</span>
+  </div>
+
+  <div class="farewell-card">
+    <div class="farewell-quote">
+      "Thank you for giving TabBye a chance.
+      Building something that people actually use is the
+      best feeling in the world for a developer —
+      and you were part of that.<br><br>
+      If I did something wrong, I genuinely want to know.
+      If there's a feature you wished existed, I'd love
+      to build it. TabBye isn't finished —
+      it's just getting started.<br><br>
+      I hope to see you again. 🙏"
+    </div>
+    <div class="farewell-sig">
+      — <span>Kartik</span>,
+      developer &amp; 18-year-old from Nepal 🇳🇵
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FEEDBACK
+  ══════════════════════════════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-label">Help me improve</span>
+  </div>
+
+  <div class="feedback-box">
+    <div class="fb-title">Why did you remove TabBye?</div>
+    <div class="fb-sub">
+      No login, no tracking — just a quick note to help
+      make it better for everyone.
+    </div>
+
+    <div class="reasons-grid">
+      <button class="reason-btn"
+        onclick="toggleReason(this)">
+        <span class="reason-emoji">🐛</span>
+        Found a bug
+      </button>
+      <button class="reason-btn"
+        onclick="toggleReason(this)">
+        <span class="reason-emoji">🔧</span>
+        Missing a feature
+      </button>
+      <button class="reason-btn"
+        onclick="toggleReason(this)">
+        <span class="reason-emoji">⚡</span>
+        Too aggressive closing
+      </button>
+      <button class="reason-btn"
+        onclick="toggleReason(this)">
+        <span class="reason-emoji">🔄</span>
+        Switching to another tool
+      </button>
+      <button class="reason-btn"
+        onclick="toggleReason(this)">
+        <span class="reason-emoji">⏱️</span>
+        Timer didn't work right
+      </button>
+      <button class="reason-btn"
+        onclick="toggleReason(this)">
+        <span class="reason-emoji">🤷</span>
+        Just trying things out
+      </button>
+      <button class="reason-btn"
+        onclick="toggleReason(this)">
+        <span class="reason-emoji">💾</span>
+        Graveyard didn't save
+      </button>
+      <button class="reason-btn"
+        onclick="toggleReason(this)">
+        <span class="reason-emoji">💡</span>
+        Other reason
+      </button>
+    </div>
+
+    <textarea
+      id="feedbackText"
+      placeholder="Anything else you'd like to share? (optional)"
+    ></textarea>
+
+    <div class="submit-row">
+      <span class="submit-note">
+        Your feedback is anonymous &amp;<br>
+        not sent anywhere.
+      </span>
+      <button
+        class="btn-submit"
+        id="submitBtn"
+        onclick="submitFeedback()"
+      >
+        Send anyway 💌
+      </button>
+    </div>
+
+    <div class="thank-you-msg" id="thankYou">
+      ✅ Thank you! Your words mean a lot. — Kartik
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       WHAT YOU HAD
+  ══════════════════════════════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-label">What you had with TabBye</span>
+  </div>
+
+  <div class="miss-grid">
+
+    <div class="miss-card">
+      <div class="miss-icon miss-icon-purple">🤖</div>
+      <div>
+        <div class="miss-title">Auto-Close Idle Tabs</div>
+        <div class="miss-desc">
+          Tabs sitting unused got closed automatically,
+          saving RAM and keeping your browser fast.
+        </div>
+      </div>
+    </div>
+
+    <div class="miss-card">
+      <div class="miss-icon miss-icon-pink">💀</div>
+      <div>
+        <div class="miss-title">Graveyard — Links Never Lost</div>
+        <div class="miss-desc">
+          Every closed tab was saved with title, URL,
+          and timestamp. Restore anything with one click.
+        </div>
+      </div>
+    </div>
+
+    <div class="miss-card">
+      <div class="miss-icon miss-icon-amber">⚠️</div>
+      <div>
+        <div class="miss-title">Warning Before Closing</div>
+        <div class="miss-desc">
+          5-minute warnings before any tab closed.
+          Snooze button to reset the timer instantly.
+        </div>
+      </div>
+    </div>
+
+    <div class="miss-card">
+      <div class="miss-icon miss-icon-blue">📦</div>
+      <div>
+        <div class="miss-title">Smart Tab Groups</div>
+        <div class="miss-desc">
+          Tabs from the same domain grouped together.
+          Restore entire sessions with one click.
+        </div>
+      </div>
+    </div>
+
+    <div class="miss-card">
+      <div class="miss-icon miss-icon-teal">🎯</div>
+      <div>
+        <div class="miss-title">Focus Mode</div>
+        <div class="miss-desc">
+          Tab limit alerts to keep you disciplined.
+          Perfect for deep work and study sessions.
+        </div>
+      </div>
+    </div>
+
+    <div class="miss-card">
+      <div class="miss-icon miss-icon-indigo">📊</div>
+      <div>
+        <div class="miss-title">Stats & Weekly Wrapped</div>
+        <div class="miss-desc">
+          Tabs closed, RAM saved, streaks, top domains,
+          and your tab personality level. All in one view.
+        </div>
+      </div>
+    </div>
+
+    <div class="miss-card">
+      <div class="miss-icon miss-icon-red">😤</div>
+      <div>
+        <div class="miss-title">Tab Shaming & Levels</div>
+        <div class="miss-desc">
+          From Tab Enlightened ✨ to Tab Goblin 👺.
+          Real-time personality based on your open tabs.
+        </div>
+      </div>
+    </div>
+
+    <div class="miss-card">
+      <div class="miss-icon miss-icon-green">🔐</div>
+      <div>
+        <div class="miss-title">100% Private & Offline</div>
+        <div class="miss-desc">
+          No servers. No login. No analytics.
+          Everything stayed on your device. Always.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DEVELOPER
+  ══════════════════════════════════════ -->
+  <div class="section-divider">
+    <span class="section-divider-label">Stay in touch</span>
+  </div>
+
+  <div class="dev-card">
+
+    <div class="dev-avatar">
+      <img
+        src="developer.png"
+        alt="Bishnu (Kartik)"
+        id="devGoodbyePhoto"
+        onerror="this.style.display='none';
+          document.getElementById('devGoodbyeFallback')
+          .style.display='flex'"
+      />
+      <div
+        class="dev-avatar-fallback"
+        id="devGoodbyeFallback"
+        style="display:none"
+      >BK</div>
+    </div>
+
+    <div class="dev-name">Bishnu (Kartik)</div>
+    <div class="dev-tag">
+      18-year-old developer from Nepal 🇳🇵
+      &nbsp;·&nbsp; AI Enthusiast
+      &nbsp;·&nbsp; Privacy-First Builder
+    </div>
+
+    <div class="dev-socials">
+      <a class="dev-social"
+        href="https://www.facebook.com/shah.bishnu.508739/"
+        target="_blank">
+        📘 Facebook
+      </a>
+      <a class="dev-social"
+        href="https://www.linkedin.com/in/bishnukartik-sah-696244275/"
+        target="_blank">
+        💼 LinkedIn
+      </a>
+      <a class="dev-social" href="#" target="_blank">
+        🌐 Portfolio
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-logo">
+      <div class="footer-logo-icon">💀</div>
+      <span class="footer-logo-name">TabBye</span>
+    </div>
+    <div class="footer-text">
+      v1.0.0 &nbsp;·&nbsp; Auto-Close Tabs &nbsp;·&nbsp;
+      Built with ❤️ in Nepal<br>
+      Privacy-First &nbsp;·&nbsp; No Tracking &nbsp;·&nbsp;
+      No Data Collection &nbsp;·&nbsp; 100% Offline
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleReason(btn) {
+    btn.classList.toggle("selected");
+  }
+
+  function submitFeedback() {
+    const btn      = document.getElementById("submitBtn");
+    const thankYou = document.getElementById("thankYou");
+
+    btn.disabled    = true;
+    btn.textContent = "Sending…";
+
+    // Collect selected reasons (local only — no network)
+    const selected = [...document.querySelectorAll(
+      ".reason-btn.selected"
+    )].map(b => b.textContent.trim());
+
+    const extra = document.getElementById("feedbackText")
+      .value.trim();
+
+    // Log locally (no server calls)
+    console.log("[TabBye Goodbye Feedback]", {
+      reasons: selected,
+      note: extra
+    });
+
+    setTimeout(() => {
+      document.querySelector(".reasons-grid").style.display
+        = "none";
+      document.querySelector("textarea").style.display
+        = "none";
+      document.querySelector(".submit-row").style.display
+        = "none";
+      thankYou.style.display = "block";
+    }, 600);
+  }
+</script>
+
+</body>
+</html>
